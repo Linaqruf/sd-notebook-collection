@@ -1,0 +1,5 @@
+diffusers[torch]==0.10.2
+pytorch_lightning
+safetensors==0.2.6
+huggingface-hub
+.
