@@ -2,6 +2,38 @@
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
  ## What's new?
+ ## What's new?
+ ### v.2.5.0 (16/04/23)
+- Update Web UI to the latest version
+- Moved `What's new?` to [GitHub repository](https://github.com/Linaqruf/sd-notebook-collection/blob/main/README.md)
+- Added link to [Cagliostro Colab UI User Manual](https://github.com/Linaqruf/sd-notebook-collection/blob/main/README.md)
+- Added `cheatsheet` in every header and subheader based on [Cagliostro Colab UI User Manual](https://github.com/Linaqruf/sd-notebook-collection/blob/main/README.md) explanation
+- Reformatted Notebook to be more readable.
+- If `use_anapnoe_ui` set to `True`, skip updating `stable-diffusion-webui-images-browser` when `update_extensions` set to `True`
+- Added 2 more `os.environ` changes
+  - os.environ["PYTHONDONTWRITEBYTECODE"]='1'
+  - os.environ['PYTHONWARNINGS'] = 'ignore'
+- Added [Replicant V2.0](https://huggingface.co/gsdf/Replicant-V2.0) as new SDv2.x model
+- [**ControlNet V1.1**](https://github.com/lllyasviel/ControlNet-v1-1-nightly) Update!
+  - Removed old Annotator and ControlNet V1.0 model, and added new ones. Total: 13 new Annotator and 14 new ControlNet V1.1 models.
+  - Renamed `sd21_control_model` to `sd21_control_v10_sd21_model`
+  - Renamed `wd15_control_model` to `wd15_control_v10_sd21_model`
+- Revamped how `Custom Download Corner` works.
+  - Removed `custom_upscaler_url`, `custom_control_url`, and `custom_components_url`
+  - Added a feature to prune model, fuse folder, copy from Google Drive. Users can find how to use it in this [link](https://github.com/Linaqruf/sd-notebook-collection/blob/main/MANUAL.md#custom-download-corner) or this table.
+
+| Feature | Description | How to Use | Example |
+| --- | --- | --- | --- |
+| **Multiple Downloads** | Download multiple files at once. | Fill in the URL fields with the links to the files you want to download. Separate multiple URLs with a comma. | `url1, url2, url3` |
+| **Auto-prune** | Prune models after downloading | Add `fp16:` or `fp32:` before URLs. | `fp16:url1` |
+| **Copy from Google Drive** | Copy models from Google Drive and load them in the session. | Make sure you have already mounted Google Drive. Type the path to your model/lora/embedding from Google Drive. | `/content/drive/MyDrive/path/to/folder` |
+| **Fusing Folder** | Fuse models/embeddings/LoRA folder to `/content/fused/{category}`. | Make sure you have already mounted Google Drive. Add `fuse:` before the path to the folder. | `fuse:/path/to/gdrive/folder` |
+| **Auto-extract** | Extract files after downloading. | Add `links/to/file` ending with `.zip` or `.tar.lz4`. Extract files to specified destination directory. | `https//link.com/to/file` |
+| **Install Extensions** | Install extensions for Stable Diffusion Web UI. | Add the link to the GitHub repository to `custom_extension_url`. | `https://github.com/user/repo` |
+
+- Changed the Gradio authentication logic to use a `boolean` instead. The username is set to `cagliostro`, and the password is a randomly generated 6-character combination of ASCII letters and numbers.
+- Added an option to enable `--opt-sdp-attention` instead of `xformers` to accelerate PyTorch 2.0.
+
  ### v.2.2.0 (03/04/23)
   - Update Web UI to the latest version
   - Update xformers to `0.0.18`
