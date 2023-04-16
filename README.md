@@ -2,7 +2,6 @@
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
  ## What's new?
- ## What's new?
  ### v.2.5.0 (16/04/23)
 - Update Web UI to the latest version
 - Moved `What's new?` to [GitHub repository](https://github.com/Linaqruf/sd-notebook-collection/blob/main/README.md)
