@@ -1,12 +1,10 @@
-# Cagliostro Colab UI User Manual [⬆️](#table-of-contents)
+# Cagliostro Colab UI User Manual
 
 Welcome to the [Cagliostro Colab UI](https://colab.research.google.com/github/Linaqruf/sd-notebook-collection/blob/main/cagliostro-colab-ui.ipynb) User Manual! This guide will walk you through the basics of using Cagliostro Colab UI, an innovative and powerful notebook designed to launch [Automatic1111's Stable Diffusion Web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui/) in Google Colab. With its advanced features, customizability, and flexibility, Cagliostro Colab offers a seamless and efficient way to utilize Stable Diffusion Web UI for your projects.
 
 To get started with Cagliostro Colab UI, you'll need to have a Google account. Once you're logged in, you can open up Google Colab by visiting the website and signing in with your Google credentials.
 
-<a name="table-of-contents"></a>
-
-## Table of Contents [⬆️](#table-of-contents)
+## Table of Contents
 - [Cagliostro Colab UI User Manual](#cagliostro-colab-ui-user-manual)
 - [Table of Contents](#table-of-contents)
 - [Features](#features)
@@ -25,22 +23,22 @@ To get started with Cagliostro Colab UI, you'll need to have a Google account. O
     - [Default Custom Upscalers](#default-custom-upscalers)
     - [Theme Selector](#theme-selector)
 
-## Features: [⬆️](#table-of-contents)
-| Advantage                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+## Features:
+| Feature                                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 |-----------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Faster installation**                  | - Unpacks a pre-installed repository instead of installing from scratch, saving time and reducing the risk of installation errors.<br>- Uses pre-installed Python dependencies and unpacks them to `/usr/local/lib/python3.9/dist-packages/` instead of downloading them during installation, further reducing installation time.                                                                                                                                                              |
-| **Faster downloader**                       | - Uses the `aria2c` downloader instead of `wget`.<br>- Downloads packages with up to 16 parallel connections, 16 threads per connection, and a 1MB chunk size for faster downloads.<br>- Used to download pre-installed repo, dependencies, and models.                                                                                                                                                                                                                       |
-| **Better UI/UX**                            | - Uses [Anapnoe's](https://github.com/anapnoe/stable-diffusion-webui-ux) forked version of [Automatic1111's Stable Diffusion Web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui/) that focuses on developing better UI/UX for Stable Diffusion Web UI. But users can still use [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui/) by disabling the `use_anapnoe_ui` option.<br>- Note that Anapnoe's still uses an old commit, so if users want to experience Gradio 3.23.0, it's better to disable the `use_anapnoe_ui` option. |
-| **Up-to-date**                              | - Enabled with `git pull` for both the repository and all extensions by default to increase user experience.<br>- Some extensions might be skipped from updating due to upgrading its Gradio to 3.23.                                                                                                                                                                                                                                                                                   |
-| **Integrated to Google Drive**              | - Provides a way to enhance the user experience for `Google Drive` users.<br>- Includes options to mount Google Drive, save output to Google Drive, load the model directory from Google Drive by using `unionfs-fuse` to merge folder A and folder B to folder C, and load the model file from Google Drive by copying the model to [Automatic1111's Stable Diffusion Web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui/).                               |
-| **Colab Optimization**                      | - Loads the model in VRAM, merges in VRAM, and uses VRAM instead of CPU for most things to create a better environment for Colab free tier users.                                                                                                                                                                                                                                                                                                                               |
-| **Better Default Model**                    | - Provides the top trending default model and the best choice in quality.<br>- Chooses Huggingface server instead of CivitAI because it's more stable and faster.                                                                                                                                                                                                                                                                                                               |
-| **All-in-One ControlNet model**             | - Provides not only the ControlNet model from SD1.5 but also SD2.1.<br>- Users can set the max model, config, and adapter config before starting the Web UI.                                                                                                                                                                                                                                                                                                                     |
-| **Advanced Custom Download**                 | - Provides seven fields to download models, including custom models, VAE, embedding, LoRA, hypernetwork, control, and extension.<br>- Users can prune their model by typing `fp16:url` to prune with FP16 precision and `fp32:url` for FP32 precision.<br>- Users can also easily load models from Google Drive by merging folders with the `fuse:path` command.                                                                                                                            |
-| **More Tunnels!**                           | - Uses `sd-webui-tunnels` extension (forked by [Camenduru](https://github.com/camenduru/sd-webui-tunnels)) and set `--multiple` by default. No more boring `gradio.live`!<br>- We're also support `ngrok`.
+| **Faster installation**                  | Unpacks a pre-installed repository instead of installing from scratch, saving time and reducing the risk of installation errors.Uses pre-installed Python dependencies and unpacks them to `/usr/local/lib/python3.9/dist-packages/` instead of downloading them during installation, further reducing installation time.                                                                                                                                                              |
+| **Faster downloader**                       | Uses the `aria2c` downloader instead of `wget`.Downloads packages with up to 16 parallel connections, 16 threads per connection, and a 1MB chunk size for faster downloads.Used to download pre-installed repo, dependencies, and models.                                                                                                                                                                                                                       |
+| **Better UI/UX**                            | Uses [Anapnoe's](https://github.com/anapnoe/stable-diffusion-webui-ux) forked version of [Automatic1111's Stable Diffusion Web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui/) that focuses on developing better UI/UX for Stable Diffusion Web UI. But users can still use [Automatic1111](https://github.com/AUTOMATIC1111/stable-diffusion-webui/) by disabling the `use_anapnoe_ui` option.Note that Anapnoe's still uses an old commit, so if users want to experience Gradio 3.23.0, it's better to disable the `use_anapnoe_ui` option. |
+| **Up-to-date**                              | Enabled with `git pull` for both the repository and all extensions by default to increase user experience.Some extensions might be skipped from updating due to upgrading its Gradio to 3.23.                                                                                                                                                                                                                                                                                   |
+| **Integrated to Google Drive**              | Provides a way to enhance the user experience for `Google Drive` users.Includes options to mount Google Drive, save output to Google Drive, load the model directory from Google Drive by using `unionfs-fuse` to merge folder A and folder B to folder C, and load the model file from Google Drive by copying the model to [Automatic1111's Stable Diffusion Web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui/).                               |
+| **Colab Optimization**                      | Loads the model in VRAM, merges in VRAM, and uses VRAM instead of CPU for most things to create a better environment for Colab free tier users.                                                                                                                                                                                                                                                                                                                               |
+| **Better Default Model**                    | Provides the top trending default model and the best choice in quality.Chooses Huggingface server instead of CivitAI because it's more stable and faster.                                                                                                                                                                                                                                                                                                               |
+| **All-in-One ControlNet model**             | Provides not only the ControlNet model from SD1.5 but also SD2.1.Users can set the max model, config, and adapter config before starting the Web UI.                                                                                                                                                                                                                                                                                                                     |
+| **Advanced Custom Download**                 | Provides seven fields to download models, including custom models, VAE, embedding, LoRA, hypernetwork, control, and extension.Users can prune their model by typing `fp16:url` to prune with FP16 precision and `fp32:url` for FP32 precision.Users can also easily load models from Google Drive by merging folders with the `fuse:path` command.                                                                                                                            |
+| **More Tunnels!**                           | Uses `sd-webui-tunnels` extension (forked by [Camenduru](https://github.com/camenduru/sd-webui-tunnels)) and set `--multiple` by default. No more boring `gradio.live`!We're also support `ngrok`.
 
-## Main Cell Explained [⬆️](#table-of-contents)
-### Install Stable Diffusion Web UI [⬆️](#table-of-contents)
+## Main Cell Explained
+### Install Stable Diffusion Web UI
 This cell installs stable-diffusion-webui repository in Colab. It also includes several configuration options, such as mounting Google Drive, updating extensions, and choosing between different versions of the web UI. 
 
 Options                                | Default Value         | Description
@@ -60,7 +58,7 @@ Note:
 - The options `load_v2_in_vram` and `colab_optimizations` are not relevant anymore as the new argument `--lowram` serves the same purpose, allowing the model to be loaded onto the GPU memory instead of VRAM if available.
 - It is strongly recommended to set the options **7, 8, and 9** to `False`</font> if you have a Colab Pro or Colab Pro+ subscription.
 
-### Download Model and VAE [⬆️](#table-of-contents)
+### Download Model and VAE
 This code block is responsible for downloading pre-trained models and VAEs (Variational Autoencoders) from Hugging Face's model hub. The available models and VAEs are listed as boolean checkboxes, and the user can select the ones they want to download.  
 
 | Model Name | Description | Model Page |
@@ -81,7 +79,7 @@ This code block is responsible for downloading pre-trained models and VAEs (Vari
 | `waifu_diffusion` | Anime VAE developed by the Waifu Diffusion developer based on the stable diffusion VAE. It provides contrast color compared to the `anime` VAE. | [Link](https://huggingface.co/hakurei/waifu-diffusion-v1-4/blob/main/vae/kl-f8-anime.ckpt) |
 | `stable_diffusion` | The original Stable Diffusion VAE trained by Stability AI. It is intended to be used with the original CompVis Stable Diffusion. | [Link](https://huggingface.co/stabilityai/sd-vae-ft-mse-original/blob/main/vae-ft-mse-840000-ema-pruned.ckpt) |
 
-### ControlNet [⬆️](#table-of-contents)
+### ControlNet
 [ControlNet](https://github.com/lllyasviel/ControlNet) is a neural network structure to control diffusion models by adding extra conditions. ControlNet was introduced in [Adding Conditional Control to Text-to-Image Diffusion Models](https://arxiv.org/abs/2302.05543) by Lvmin Zhang and Maneesh Agrawala. It introduces a framework that allows for supporting various spatial contexts that can serve as additional conditionings to Diffusion models such as Stable Diffusion. It basically allow user to control Stable Diffusion generation. ControlNet 1.1 has been released nightly at this [github repository](https://github.com/lllyasviel/ControlNet-v1-1-nightly). Currently Cagliostro Colab UI only support ControlNet 1.0 at the moment.
 
 | Option | Default | Description |
@@ -108,7 +106,7 @@ This code block is responsible for downloading pre-trained models and VAEs (Vari
 | t2iadapter_color_sd14v1.pth | t2iadapter_color_sd14v1.yaml |
 | t2iadapter_style_sd14v1.pth | t2iadapter_style_sd14v1.yaml |
 
-### Custom Download Corner [⬆️](#table-of-contents)
+### Custom Download Corner
 This is a cell that allows you to download custom `models`, `VAEs`, `embeddings`, `LoRA`, `hypernetworks`, `controls`, and install `extensions` by providing URLs to the files you want to download. This cell downloads custom files from various sources, including Google Drive, Huggingface, CivitAI, and other direct download links.
 
 | Feature | Description | How to Use | Example |
@@ -122,7 +120,7 @@ This is a cell that allows you to download custom `models`, `VAEs`, `embeddings`
 
 Once the download is complete, you can proceed to the next step.
 
-### Start Stable Diffusion Web UI [⬆️](#table-of-contents)
+### Start Stable Diffusion Web UI
 This is a cell for launching Stable Diffusion Web UI after a long configuration process above. However, it still has its own configuration requirements, such as defining arguments, using alternative tunnels, selecting a theme, and so on.
 
 Option          | Default  | Description
@@ -142,7 +140,7 @@ Option          | Default  | Description
 | `no_half_vae` | `True` | This argument prevents black generation caused by certain VAEs. This usually happens because certain VAEs like `anime` have FP32. |
 | `additional_args` | `--no-download-sd-model --gradio-queue` | This argument allows the user to add custom args from [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings). |
 
-### Download Generated Images [⬆️](#table-of-contents)
+### Download Generated Images
 This cell useful to download outputs generated from Stable Diffusion Web UI as a compressed `.zip`
 
 | Option      | Default | Description                                                                                              |
@@ -151,8 +149,8 @@ This cell useful to download outputs generated from Stable Diffusion Web UI as a
 | `folder_name` | `"AI-generated Art"` | This option is used to specify the preferred folder name in Google Drive if `use_drive` is enabled. |
 | `filename`  | `"waifu.zip"` | This option allows the user to specify the filename of the zipfile. If `use_drive` is enabled and a duplicate filename is found in Google Drive, it will be renamed to `filename(n+1).zip`. |
 
-## Extra Cell Explained [⬆️](#table-of-contents)
-### Download Generated Images V2 [⬆️](#table-of-contents)
+## Extra Cell Explained
+### Download Generated Images V2
 Same as [Download Generated Images](#download-generated-images), the difference is it send the zipfile to Huggingface instead of Google Drive. Personally, it's better than save it to Google Drive.
 
 | Option          | Default Value | Description                                                                                                       |
@@ -162,8 +160,8 @@ Same as [Download Generated Images](#download-generated-images), the difference 
 | `private_repo`  | `False`         | Specifies whether the repository is private or public to everyone.                                               |
 | `project_name`  | `"waifu"`       | Same as [Download Generated Images](#download-generated-images), this option allows the user to specify the name of the zipfile. |
 
-## Resources [⬆️](#table-of-contents)
-### Default Extensions [⬆️](#table-of-contents)
+## Resources
+### Default Extensions
 | Extensions                                           | Github Repository                                                |
 | ----------------------------------------------- | --------------------------------------------------- |
 | `ashen-sensored/sd_webui_stealth_pnginfo`         | [Link](https://github.com/ashen-sensored/sd_webui_stealth_pnginfo)             |
@@ -184,7 +182,7 @@ Same as [Download Generated Images](#download-generated-images), the difference 
 | `opparco/stable-diffusion-webui-two-shot`          | [Link](https://github.com/opparco/stable-diffusion-webui-two-shot)           |
 | `Coyote-A/ultimate-upscale-for-automatic1111`      | [Link](https://github.com/Coyote-A/ultimate-upscale-for-automatic1111.git)   |
 
-### Default Custom Upscalers [⬆️](#table-of-contents)
+### Default Custom Upscalers
 | ESRGAN Upscaler | Mirror Link |
 |------|------|
 | `lollypop.pth` | [Link](https://huggingface.co/Linaqruf/stolen/blob/main/upscaler/lollypop.pth) |
@@ -192,7 +190,7 @@ Same as [Download Generated Images](#download-generated-images), the difference 
 | `4x_foolhardy_Remacri.pth` | [Link](https://huggingface.co/Linaqruf/stolen/blob/main/upscaler/4x_foolhardy_Remacri.pth) |
 | `4x-UltraSharp.pth` | [Link](https://huggingface.co/Linaqruf/stolen/blob/main/upscaler/4x-UltraSharp.pth) |
 
-### Default Negative Embeddings  [⬆️](#table-of-contents)
+### Default Negative Embeddings 
 |  Negative Embeddings                      | Link                                                                                      |
 |-------------------------------------------|-------------------------------------------------------------------------------------------|
 | SDv1.x  Negative Embeddings | |
