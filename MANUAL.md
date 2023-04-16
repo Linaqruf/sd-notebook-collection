@@ -79,17 +79,16 @@ This code block is responsible for downloading pre-trained models and VAEs (Vari
 | `waifu_diffusion` | Anime VAE developed by the Waifu Diffusion developer based on the stable diffusion VAE. It provides contrast color compared to the `anime` VAE. | [Link](https://huggingface.co/hakurei/waifu-diffusion-v1-4/blob/main/vae/kl-f8-anime.ckpt) |
 | `stable_diffusion` | The original Stable Diffusion VAE trained by Stability AI. It is intended to be used with the original CompVis Stable Diffusion. | [Link](https://huggingface.co/stabilityai/sd-vae-ft-mse-original/blob/main/vae-ft-mse-840000-ema-pruned.ckpt) |
 
-### ControlNet
-[ControlNet](https://github.com/lllyasviel/ControlNet) is a neural network structure to control diffusion models by adding extra conditions. ControlNet was introduced in [Adding Conditional Control to Text-to-Image Diffusion Models](https://arxiv.org/abs/2302.05543) by Lvmin Zhang and Maneesh Agrawala. It introduces a framework that allows for supporting various spatial contexts that can serve as additional conditionings to Diffusion models such as Stable Diffusion. It basically allow user to control Stable Diffusion generation. ControlNet 1.1 has been released nightly at this [github repository](https://github.com/lllyasviel/ControlNet-v1-1-nightly). Currently Cagliostro Colab UI only support ControlNet 1.0 at the moment.
+### ControlNet V1.1
+[ControlNet](https://github.com/lllyasviel/ControlNet) is a neural network structure to control diffusion models by adding extra conditions. ControlNet was introduced in [Adding Conditional Control to Text-to-Image Diffusion Models](https://arxiv.org/abs/2302.05543) by Lvmin Zhang and Maneesh Agrawala. It introduces a framework that allows for supporting various spatial contexts that can serve as additional conditionings to Diffusion models such as Stable Diffusion. It basically allow user to control Stable Diffusion generation. ControlNet 1.1 has been released nightly at this [github repository](https://github.com/lllyasviel/ControlNet-v1-1-nightly) and Cagliostro Colab UI is now support it!
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| `pre_download_annotator` | `True` | Specifies whether to download ControlNet pre-processor/annotator before starting the Web UI. The pre-processor/annotator includes 7 items in total, and will be downloaded to the specified `annotator_path`. |
-| `control_model` | `False` | Specifies whether to download all 8 extracted [ControlNet v1.0](https://github.com/lllyasviel/ControlNet) model developed by [Lvmin Zhang](https://twitter.com/lvminzhang), extracted by [ClashSAN](https://huggingface.co/webui/ControlNet-modules-safetensors/tree/main). |
-| `diff_control_model` | `True` | Specifies whether to download all 8 extracted [ControlNet v1.0](https://github.com/lllyasviel/ControlNet) model developed by [Lvmin Zhang](https://twitter.com/lvminzhang) using add difference method for transfer control, which supposedly performs better than `control_model`. |
+| `pre_download_annotator` | `True` | Specifies whether to download ControlNet pre-processor/annotator before starting the Web UI. The pre-processor/annotator includes 13 items in total, and will be downloaded to the specified path. |
+| `control_v11_sd15_model` | `True` | Specifies whether to download all 14 extracted [ControlNet v1.1](https://github.com/lllyasviel/ControlNet) model developed by [Lvmin Zhang](https://twitter.com/lvminzhang) |
 | `t2i_adapter_model` | `False` | Specifies whether to download all 8 [Text to Image Adapter](https://github.com/TencentARC/T2I-Adapter) model developed by [TencentArcLab](https://github.com/TencentARC). |
-| `sd21_control_model` | `False` | Specifies whether to download all 5 extracted [SDv21 ControlNet v1.0](https://huggingface.co/thibaud/controlnet-sd21) model developed by [thibaud](https://twitter.com/thibaudz). |
-| `wd15_control_model` | `False` | Specifies whether to download all 4 extracted [Waifu Diffusion 1.5 Controlnet v1.0](https://huggingface.co/furusu/ControlNet) model developed by [furusu](https://twitter.com/gcem156). |
+| `sd21_control_v10_sd21_model` | `False` | Specifies whether to download all 5 extracted [SDv21 ControlNet v1.0](https://huggingface.co/thibaud/controlnet-sd21) model developed by [thibaud](https://twitter.com/thibaudz). |
+| `wd15_control_v10_sd21_model` | `False` | Specifies whether to download all 4 extracted [Waifu Diffusion 1.5 Controlnet v1.0](https://huggingface.co/furusu/ControlNet) model developed by [furusu](https://twitter.com/gcem156). |
 | `control_net_max_models_num` | `2` | Specifies the maximum number of ControlNet tabs for multi-controlnet generation. |
 | `control_net_model_config` | `cldm_15.yaml` | Specifies the configuration file to use for the ControlNet model. Use `cldm_15.yaml` for SDv1.x Control Model and `cldm_21.yaml` for SDv2.x Control Model. |
 | `control_net_model_adapter_config` | `sketch_adapter_v14.yaml` | Specifies the configuration file to use for the ControlNet model adapter. Different models require different configurations. The default configuration is `sketch_adapter_v14.yaml`. |
@@ -107,16 +106,16 @@ This code block is responsible for downloading pre-trained models and VAEs (Vari
 | t2iadapter_style_sd14v1.pth | t2iadapter_style_sd14v1.yaml |
 
 ### Custom Download Corner
-This is a cell that allows you to download custom `models`, `VAEs`, `embeddings`, `LoRA`, `hypernetworks`, `controls`, and install `extensions` by providing URLs to the files you want to download. This cell downloads custom files from various sources, including Google Drive, Huggingface, CivitAI, and other direct download links.
+This is a cell that allows you to download custom `models`, `VAEs`, `embeddings`, `LoRA`, `hypernetworks`, and install `extensions` by providing URLs to the files you want to download. This cell downloads custom files from various sources, including Google Drive, Huggingface, CivitAI, and other direct download links.
 
 | Feature | Description | How to Use | Example |
 | --- | --- | --- | --- |
-| `Multiple Downloads` | Download multiple files at once. | Fill in the URL fields with the links to the files you want to download. Separate multiple URLs with a comma. | `url1, url2, url3` |
-| `Auto-prune` | Prune models after downloading | Add `fp16:` or `fp32:` before URLs. | `fp16:url1` |
-| `Copy from Google Drive` | Copy models from Google Drive and load them in the session. | Make sure you have already mounted Google Drive. Type the path to your model/lora/embedding from Google Drive. | `/content/drive/MyDrive/path/to/folder` |
-| `Fusing Folder` | Fuse models/embeddings/LoRA folder to `/content/fused/{category}`. | Make sure you have already mounted Google Drive. Add `fuse:` before the path to the folder. | `fuse:/path/to/gdrive/folder` |
-| `Auto-extract` | Extract files after downloading. | Add `links/to/file` ending with `.zip` or `.tar.lz4`. Extract files to specified destination directory. | `https//link.com/to/file` |
-| `Install Extensions` | Install extensions for Stable Diffusion Web UI. | Add the link to the Github repository to `custom_extension_url`. | `https://github.com/user/repo` |
+| **Multiple Downloads** | Download multiple files at once. | Fill in the URL fields with the links to the files you want to download. Separate multiple URLs with a comma. | `url1, url2, url3` |
+| **Auto-prune** | Prune models after downloading | Add `fp16:` or `fp32:` before URLs. | `fp16:url1` |
+| **Copy from Google Drive** | Copy models from Google Drive and load them in the session. | Make sure you have already mounted Google Drive. Type the path to your model/lora/embedding from Google Drive. | `/content/drive/MyDrive/path/to/folder` |
+| **Fusing Folder** | Fuse models/embeddings/LoRA folder to `/content/fused/{category}`. | Make sure you have already mounted Google Drive. Add `fuse:` before the path to the folder. | `fuse:/path/to/gdrive/folder` |
+| **Auto-extract** | Extract files after downloading. | Add `links/to/file` ending with `.zip` or `.tar.lz4`. Extract files to specified destination directory. | `https//link.com/to/file` |
+| **Install Extensions** | Install extensions for Stable Diffusion Web UI. | Add the link to the Github repository to `custom_extension_url`. | `https://github.com/user/repo` |
 
 Once the download is complete, you can proceed to the next step.
 
