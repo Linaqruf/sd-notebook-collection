@@ -4,6 +4,8 @@ Welcome to the [Cagliostro Colab UI](https://colab.research.google.com/github/Li
 
 To get started with Cagliostro Colab UI, you'll need to have a Google account. Once you're logged in, you can open up Google Colab by visiting the website and signing in with your Google credentials.
 
+<a name="table-of-contents"></a>
+
 ## Table of Contents [⬆️](#table-of-contents)
 - [Cagliostro Colab UI User Manual](#cagliostro-colab-ui-user-manual)
 - [Table of Contents](#table-of-contents)
