@@ -72,7 +72,6 @@ This code block is responsible for downloading pre-trained models and VAEs (Vari
 | Stable Diffusion V2.x Model |  |  |
 | `replicant_v1` | An anime model based off Waifu Diffusion V1.5 Beta 1. | [Link](https://huggingface.co/gsdf/Replicant-V1.0/blob/main/Replicant-V1.0_fp16.safetensors) |
 | `replicant_v2` | An anime model based off Waifu Diffusion V1.5 Beta 2, which performs better than `waifu_diffusion_v1_5_e2_aesthetic`. | [Link](https://huggingface.co/gsdf/Replicant-V2.0/blob/main/Replicant-V2.0_fp16.safetensors) |
-| `illuminati_diffusion_v1_1` | Fine-tuned off stable diffusion v2.1 768, it allows users to generate midjourney-like pictures and is trained with `noise_offset` on. It performs better to generate darker or brighter images. | [Link](https://huggingface.co/4eJIoBek/Illuminati-Diffusion-v1-1/blob/main/illuminatiDiffusionV1_v11.safetensors) |
 | `waifu_diffusion_v1_5_e2_aesthetic` | An overtrained version of Waifu Diffusion V1.5 Beta 2 trained off stable diffusion v2.1 768. It works great to generate anime art. | [Link](https://huggingface.co/waifu-diffusion/wd-1-5-beta2/blob/main/checkpoints/wd-1-5-beta2-aesthetic-fp16.safetensors) |
 | VAE models | | |
 | `anime` (default) | A popular anime VAE used by many model, such as AbyssOrangeMixs and Anything V3. | 🔐 |
@@ -86,11 +85,10 @@ This code block is responsible for downloading pre-trained models and VAEs (Vari
 |--------|---------|-------------|
 | `pre_download_annotator` | `True` | Specifies whether to download ControlNet pre-processor/annotator before starting the Web UI. The pre-processor/annotator includes 13 items in total, and will be downloaded to the specified path. |
 | `control_v11_sd15_model` | `True` | Specifies whether to download all 14 extracted [ControlNet v1.1](https://github.com/lllyasviel/ControlNet) model developed by [Lvmin Zhang](https://twitter.com/lvminzhang) |
-| `t2i_adapter_model` | `False` | Specifies whether to download all 8 [Text to Image Adapter](https://github.com/TencentARC/T2I-Adapter) model developed by [TencentArcLab](https://github.com/TencentARC). |
-| `sd21_control_v10_sd21_model` | `False` | Specifies whether to download all 5 extracted [SDv21 ControlNet v1.0](https://huggingface.co/thibaud/controlnet-sd21) model developed by [thibaud](https://twitter.com/thibaudz). |
-| `wd15_control_v10_sd21_model` | `False` | Specifies whether to download all 4 extracted [Waifu Diffusion 1.5 Controlnet v1.0](https://huggingface.co/furusu/ControlNet) model developed by [furusu](https://twitter.com/gcem156). |
+| `t2i_adapter_sd15_model` | `False` | Specifies whether to download all 12 [Text to Image Adapter](https://github.com/TencentARC/T2I-Adapter) model developed by [TencentArcLab](https://github.com/TencentARC). |
+| `control_v10_sd21_model` | `False` | Specifies whether to download all 5 extracted [SDv21 ControlNet v1.0](https://huggingface.co/thibaud/controlnet-sd21) model developed by [thibaud](https://twitter.com/thibaudz). |
+| `control_v10_wd15_model` | `False` | Specifies whether to download all 3 extracted [Waifu Diffusion 1.5 Controlnet v1.0](https://huggingface.co/furusu/ControlNet) model developed by [furusu](https://twitter.com/gcem156). |
 | `control_net_max_models_num` | `2` | Specifies the maximum number of ControlNet tabs for multi-controlnet generation. |
-| `control_net_model_config` | `cldm_15.yaml` | Specifies the configuration file to use for the ControlNet model. Use `cldm_15.yaml` for SDv1.x Control Model and `cldm_21.yaml` for SDv2.x Control Model. |
 | `control_net_model_adapter_config` | `sketch_adapter_v14.yaml` | Specifies the configuration file to use for the ControlNet model adapter. Different models require different configurations. The default configuration is `sketch_adapter_v14.yaml`. |
 
 [T2I Adapter](https://github.com/TencentARC/T2I-Adapter) is a simple and small **(~70M parameters, ~300M storage space)** network that can provide extra guidance to pre-trained text-to-image models while freezing the original large text-to-image models. Controlnet was introduced in [T2I-Adapter: Learning Adapters to Dig out More Controllable Ability for Text-to-Image Diffusion Models](https://huggingface.co/TencentARC/T2I-Adapter). It basically a cheapest ControlNet that allow user to control Text to Image generation.
@@ -132,11 +130,10 @@ Option          | Default  | Description
 | `theme_selector` | `ogxBGreen` | This section used to change preferred theme for [Anapnoe's Stable Diffusion Web UI/UX](https://github.com/anapnoe/stable-diffusion-webui-ux) |
 | `use_gradio_auth` | `False` | If enabled, every time a user opens shared links, it will ask for authentication. The username is set to `cagliostro` and the password will be randomly generated with 6 ASCII characters and numbers. Authentication information will be printed when the user launches the Web UI. |
 | `accelerator` | `xformers` | To accelerate your generation and training, we offer 3 arguments. People commonly use `xformers`, but `opt-sdp-attention` would be a nice choice to have after Colab updates PyTorch to 2.0. It's claimed to be better than `xformers` but only for generating at lower resolution. So we choose to use `xformers` by default. |
-| `medvram` | `False` | This argument allows the user to reduce VRAM. However, it's not relevant anymore but still nice to have. |
-| `silent_launch` | `True` | This is a quality-of-life option. If enabled, it will use `--no-hashing` to skip model hashing, which is useful for not double-checking the model if it doesn't have the same hash and for merging the model. If enabled, it will also use `--disable-console-progressbars` to only have 1 line progress bars instead of updating new lines every generation. |
-| `auto_model` | `False` | This argument allows searching for a model and randomly selecting the model in the model directory. |
-| `auto_vae` | `True` | This argument allows searching for a VAE and randomly selecting the VAE in the VAE directory. |
-| `no_half_vae` | `True` | This argument prevents black generation caused by certain VAEs. This usually happens because certain VAEs like `anime` have FP32. |
+| `quiet_mode` | `True` | This is a quality-of-life option. If enabled, it will use `--no-hashing` to skip model hashing, which is useful for not double-checking the model if it doesn't have the same hash and for merging the model. If enabled, it will also use `--disable-console-progressbars` to only have 1 line progress bars instead of updating new lines every generation. |
+| `auto_select_model` | `False` | This argument allows searching for a model and randomly selecting the model in the model directory. |
+| `auto_select_VAE` | `True` | This argument allows searching for a VAE and randomly selecting the VAE in the VAE directory. |
+| `no_half_VAE` | `True` | This argument prevents black generation caused by certain VAEs. This usually happens because certain VAEs like `anime` have FP32. |
 | `additional_args` | `--no-download-sd-model --gradio-queue` | This argument allows the user to add custom args from [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings). |
 
 ### Download Generated Images
