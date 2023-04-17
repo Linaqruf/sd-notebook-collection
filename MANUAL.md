@@ -11,7 +11,7 @@ To get started with Cagliostro Colab UI, you'll need to have a Google account. O
 - [Main Cell Explained](#main-cell-explained)
     - [Install Stable Diffusion Web UI](#install-stable-diffusion-web-ui)
     - [Download Model and VAE](#download-model-and-vae)
-    - [ControlNet](#controlnet)
+    - [ControlNet V1.1](#controlnet-v11)
     - [Custom Download Corner](#custom-download-corner)
     - [Start Stable Diffusion Web UI](#start-stable-diffusion-web-ui)
     - [Download Generated Images](#download-generated-images)
