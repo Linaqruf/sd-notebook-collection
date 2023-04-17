@@ -2,6 +2,10 @@
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
  ## What's new?
+ ### v.2.5.1 (18/04/23)
+ - Added `cldm_config.yaml` for every ControlNet model [reference](https://github.com/Mikubill/sd-webui-controlnet#download-models)
+ - Deleted `custom_control_url` from `Custom Download Corner` cell
+
  ### v.2.5.0 (16/04/23)
 - Update Web UI to the latest version
 - Moved `What's new?` to [GitHub repository](https://github.com/Linaqruf/sd-notebook-collection/blob/main/README.md)
