@@ -1,10 +1,13 @@
 # **Cagliostro Colab UI**
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
- ## What's new?
- ### v.2.5.1 (18/04/23)
- - Added `cldm_config.yaml` for every ControlNet model (see: [reference](https://github.com/Mikubill/sd-webui-controlnet#download-models))
- - Deleted `custom_control_url` from `Custom Download Corner` cell
+## What's New?
+### v.2.5.1 (18/04/23)
+- Added `cldm_config.yaml` for every ControlNet model (refer to [link](https://github.com/Mikubill/sd-webui-controlnet#download-models))
+- Removed `custom_control_url` from `Custom Download Corner` cell
+- Removed `illuminati_diffusion_v1_1` from `Available SDv2.x Model` list as the model has become exclusive to a certain image generation website
+- Reworded certain arguments to make them more readable
+- Removed `medvram` option from the `Arguments` list.
 
  ### v.2.5.0 (16/04/23)
 - Update Web UI to the latest version
