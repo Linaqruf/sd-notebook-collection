@@ -3,7 +3,7 @@ All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI fo
  
  ## What's new?
  ### v.2.5.1 (18/04/23)
- - Added `cldm_config.yaml` for every ControlNet model [reference](https://github.com/Mikubill/sd-webui-controlnet#download-models)
+ - Added `cldm_config.yaml` for every ControlNet model (see: [reference](https://github.com/Mikubill/sd-webui-controlnet#download-models))
  - Deleted `custom_control_url` from `Custom Download Corner` cell
 
  ### v.2.5.0 (16/04/23)
