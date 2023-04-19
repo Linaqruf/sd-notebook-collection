@@ -2,6 +2,15 @@
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
 ## What's New?
+### v.2.5.2 (19/04/23)
+- Reformat and simplified most cells
+- Rewording all available variable to make it easier to read, example: `git_pull` to `update_webui`
+- Added `output_drive_folder` to customize gdrive outputs folder name
+- Removed `clean_install` option
+- Merged `load_v2_in_vram` and `merge_in_vram` to `colab_optimization` and set to `False`
+- Deleted `stable_diffusion_v_1_5` and `replicant_v1` from available models
+- Added `custom_upscaler_url` back
+
 ### v.2.5.1 (18/04/23)
 - Added `cldm_config.yaml` for every ControlNet model (refer to [link](https://github.com/Mikubill/sd-webui-controlnet#download-models))
 - Removed `custom_control_url` from `Custom Download Corner` cell
@@ -12,8 +21,8 @@ All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI fo
  ### v.2.5.0 (16/04/23)
 - Update Web UI to the latest version
 - Moved `What's new?` to [GitHub repository](https://github.com/Linaqruf/sd-notebook-collection/blob/main/README.md)
-- Added link to [Cagliostro Colab UI User Manual](https://github.com/Linaqruf/sd-notebook-collection/blob/main/README.md)
-- Added `cheatsheet` in every header and subheader based on [Cagliostro Colab UI User Manual](https://github.com/Linaqruf/sd-notebook-collection/blob/main/README.md) explanation
+- Added link to [Cagliostro Colab UI User Manual](https://github.com/Linaqruf/sd-notebook-collection/blob/main/MANUAL.md)
+- Added `cheatsheet` in every header and subheader based on [Cagliostro Colab UI User Manual](https://github.com/Linaqruf/sd-notebook-collection/blob/main/MANUAL.md) explanation
 - Reformatted Notebook to be more readable.
 - If `use_anapnoe_ui` set to `True`, skip updating `stable-diffusion-webui-images-browser` when `update_extensions` set to `True`
 - Added 2 more `os.environ` changes
