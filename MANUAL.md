@@ -43,20 +43,20 @@ This cell installs stable-diffusion-webui repository in Colab. It also includes 
 
 Options                                | Default Value         | Description
 ---------------------------------------|-----------------------|---------------------------------------------------------------
-`use_anapnoe_ui`                       | `True`                | Use Anapnoe's forked repository instead of Automatic1111's.
+Drive Config                           |                       | 
 `mount_drive`                          | `False`               | Mount your Google Drive to `/content/drive/MyDrive/` to load models.
 `output_to_drive`                      | `False`               | Save generation outputs to your Google Drive instead of `/content/stable-diffusion-webui/outputs`.
+`output_drive_folder`                  | `False`               | Set your default drive folder name to save your generation outputs, default: `cagliostro-colab-ui/outputs`
+Web UI Config                          |                       | 
+`use_anapnoe_ui`                       | `True`                | Use Anapnoe's forked repository instead of Automatic1111's.
+`update_webui`                         | `True`                | Update the web UI to the latest version. Because we're using pre-installed repo, this option is crucial if you want to try latest update.
+`update_extensions`                    | `True`                | Update all extensions to the latest version.
 `commit_hash`                          | `''`                  | Go back to a specific commit hash to prevent errors when the web UI is updated.
-`git_pull`                             | `True`                | Update the web UI to the latest version. Because we're using pre-installed repo, this option is crucial if you want to try latest update.
-`clean_install`                        | `False`               | `Panic button`. Uninstall the pre-installed repository and reinstall it.
-`load_v2_in_vram`                      | `True`                | Load SDv2 model into VRAM instead of RAM.
-`merge_in_vram`                        | `True`                | Process model merger in VRAM instead of RAM. Only affects built-in `checkpoint merge`.
-`colab_optimizations`                  | `True`                | Optimize the model loading and `demo.queue()` operation for Colab. Load model onto GPU memory if available.
-`update_extensions`                  | `True`                | Update all extensions to the latest version.
+`colab_optimizations`                  | `False`               | Load SDv2 the model into VRAM, optimizes demo.queue() for Colab, and loads the model onto GPU memory if available.
+
 
 Note: 
-- The options `load_v2_in_vram` and `colab_optimizations` are not relevant anymore as the new argument `--lowram` serves the same purpose, allowing the model to be loaded onto the GPU memory instead of VRAM if available.
-- It is strongly recommended to set the options **7, 8, and 9** to `False`</font> if you have a Colab Pro or Colab Pro+ subscription.
+- The options `colab_optimizations` are not relevant anymore as the new argument `--lowram` serves the same purpose, allowing the model to be loaded onto the GPU memory instead of VRAM if available. It also not recommended to set this `True` if you have Colab Pro subscription.
 
 ### Download Model and VAE
 This code block is responsible for downloading pre-trained models and VAEs (Variational Autoencoders) from Hugging Face's model hub. The available models and VAEs are listed as boolean checkboxes, and the user can select the ones they want to download.  
@@ -68,9 +68,7 @@ This code block is responsible for downloading pre-trained models and VAEs (Vari
 | `anime_pastel_dream` | The best alternative model to `pastelmix`, `anime_pastel_dream` was developed to provide a better user experience. | [Link](https://huggingface.co/Lykon/AnimePastelDream/blob/main/AnimePastelDream_Soft_noVae_fp16.safetensors) |
 | `anylora` (default) | The best alternative model to `anything_v4_5`, `anylora` was developed to provide a better user experience. | [Link](https://huggingface.co/Lykon/AnyLoRA/blob/main/AnyLoRA_noVae_fp16.safetensors) |
 | `chilloutmix_ni` | The most used non-anime model for now, it generates real person pictures but is still influenced by anime models. | [Link](https://huggingface.co/naonovn/chilloutmix_NiPrunedFp32Fix/blob/main/chilloutmix_NiPrunedFp32Fix.safetensors) |
-| `stable_diffusion_v1_5` | The latest Stable Diffusion pretrained model in SDv1.x. | [Link](https://huggingface.co/Linaqruf/stolen/blob/main/pruned-models/stable_diffusion_1_5-pruned.safetensors) |
 | Stable Diffusion V2.x Model |  |  |
-| `replicant_v1` | An anime model based off Waifu Diffusion V1.5 Beta 1. | [Link](https://huggingface.co/gsdf/Replicant-V1.0/blob/main/Replicant-V1.0_fp16.safetensors) |
 | `replicant_v2` | An anime model based off Waifu Diffusion V1.5 Beta 2, which performs better than `waifu_diffusion_v1_5_e2_aesthetic`. | [Link](https://huggingface.co/gsdf/Replicant-V2.0/blob/main/Replicant-V2.0_fp16.safetensors) |
 | `waifu_diffusion_v1_5_e2_aesthetic` | An overtrained version of Waifu Diffusion V1.5 Beta 2 trained off stable diffusion v2.1 768. It works great to generate anime art. | [Link](https://huggingface.co/waifu-diffusion/wd-1-5-beta2/blob/main/checkpoints/wd-1-5-beta2-aesthetic-fp16.safetensors) |
 | VAE models | | |
@@ -104,7 +102,7 @@ This code block is responsible for downloading pre-trained models and VAEs (Vari
 | t2iadapter_style_sd14v1.pth | t2iadapter_style_sd14v1.yaml |
 
 ### Custom Download Corner
-This is a cell that allows you to download custom `models`, `VAEs`, `embeddings`, `LoRA`, `hypernetworks`, and install `extensions` by providing URLs to the files you want to download. This cell downloads custom files from various sources, including Google Drive, Huggingface, CivitAI, and other direct download links.
+This is a cell that allows you to download custom `models`, `VAEs`, `embeddings`, `LoRA`, `hypernetworks`, `upscalee` and install `extensions` by providing URLs to the files you want to download. This cell downloads custom files from various sources, including Google Drive, Huggingface, CivitAI, and other direct download links.
 
 | Feature | Description | How to Use | Example |
 | --- | --- | --- | --- |
@@ -123,7 +121,7 @@ This is a cell for launching Stable Diffusion Web UI after a long configuration 
 Option          | Default  | Description
 ----------------|----------|-------------
 | Alternative Tunnels |  | Note: Recommended Tunnels: `ngrok` > `cloudflared` > `remotemoe` > `localhostrun` > `googleusercontent` > `gradio` |
-`alt_tunnels  `    | `multiple`  | Allow users to use alternative tunnels for shared links such as `cloudflared`, `remotemoe`, `localhostrun`, and `googleusercontent`.
+`tunnel`           | `multiple`  | Allow users to use alternative tunnels for shared links such as `cloudflared`, `remotemoe`, `localhostrun`, and `googleusercontent`.
 `ngrok_token`      | `' '` | Enable ngrok tunnel for shared links. Users can get their ngrok token from [here](https://dashboard.ngrok.com/get-started/your-authtoken). If `ngrok_token` is enabled, it will automatically disable `alt_tunnels`. 
 `ngrok_region`   | `ap`     | Specify the desired region for ngrok tunnel. Users can choose between `["us", "eu", "au", "ap", "sa", "jp", "in"]`.
 | Launch Arguments |  |  |
