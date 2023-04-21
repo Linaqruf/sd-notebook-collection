@@ -2,6 +2,16 @@
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
 ## What's New?
+### v.2.5.3 (21/04/23)
+- `AUTOMATIC1111's stable-diffusion-webui` has been removed because Google Colab has prohibited the usage of any string named `stable-diffusion-webui` due to its massive usage of webui.
+- `Anapnoe UI` has been set as default forcibly, also added warning messages.
+- An `experimental` section has been added to install the `Anapnoe UI` integrated with `gradio 3.23.0`.
+- `sd-webui-tunnels` forked by `camenduru` has been removed since the new ToS of Colab prohibits SSH shell or any similar tools.
+- Now, there are two versions of the notebook available: 
+   - [Cagliostro Colab UI](https://colab.research.google.com/github/Linaqruf/sd-notebook-collection/blob/main/cagliostro-colab-ui.ipynb): A compact and lightweight version that removes `AUTOMATIC1111's stable-diffusion-webui`.
+   - [Cagliostro Colab UI Pro](https://colab.research.google.com/github/Linaqruf/sd-notebook-collection/blob/main/cagliostro-colab-ui-pro.ipynb): It has all the features of the Cagliostro Colab UI update in 19/04. However, since I do not have a Colab Pro subscription, I am unlikely to maintain it.
+
+  - 
 ### v.2.5.2 (19/04/23)
 - Reformat and simplified most cells
 - Rewording all available variable to make it easier to read, example: `git_pull` to `update_webui`
