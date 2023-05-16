@@ -2,6 +2,28 @@
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
 ## What's New?
+
+### v.2.6.0 (16/05/23)
+- Updated to the latest commit.
+- Available `repo_type` values: `["AUTOMATIC1111", "AUTOMATIC1111-dev", "Anapnoe"]`.
+- Updated the new tile model with `control_v11f1e_sd15_tile_fp16.safetensors`.
+- Added 2 optimization options:
+  - `ram_alloc_patch`, also known as the Camenduru Patch, to decrease RAM usage.
+  - `colab_optimizations`, also known as TheLastBen Patch, to load the model in VRAM and fix the gradio queue problem.
+- Added the `use_presets` option to turn on or off the default prompt.
+- Simplified the `Arguments` category options.
+- Set a default value for `gradio_auth`.
+- Changed [yfszzx/stable-diffusion-webui-images-browser](https://github.com/yfszzx/stable-diffusion-webui-images-browser) to [zanllp/sd-webui-infinite-image-browsing](https://github.com/zanllp/sd-webui-infinite-image-browsing).
+- Added the extension [butaixianran/Stable-Diffusion-Webui-Civitai-Helper](https://github.com/butaixianran/Stable-Diffusion-Webui-Civitai-Helper).
+- Added the extension [Bing-su/adetailer](https://github.com/Bing-su/adetailer).
+- Added the extension [canvas-zoom](https://github.com/richrobber2/canvas-zoom).
+- Added negative embeddings [EasyNegativeV2](https://huggingface.co/gsdf/Counterfeit-V3.0/blob/main/embedding/EasyNegativeV2.safetensors).
+- Added a new theme for `Anapnoe-webui`: `["minimal", "minimal-orange"]`.
+- Bug Fixes:
+  - Fixed Inpaint not showing images [#28](https://github.com/Linaqruf/sd-notebook-collection/issues/28). It looks like [Bing-su/adetailer](https://github.com/Bing-su/adetailer) and [canvas-zoom](https://github.com/richrobber2/canvas-zoom) are unusable in `Anapnoe-webui`.
+  - Fixed the `quicksettings` problem after the master repo was migrated from strings to a list. [#27](https://github.com/Linaqruf/sd-notebook-collection/issues/27) [#29](https://github.com/Linaqruf/sd-notebook-collection/issues/29).
+  - An annoying bug has recently occurred in `Anapnoe-webui`. Extra networks are not displaying Models, Embeddings, LoRA, etc., even if they exist in the respective folder. Temporary fixed by reset commit hash to [f2b9c2c](https://github.com/anapnoe/stable-diffusion-webui-ux/commit/f2b9c2cb4fa5f0e866c1b6f84e44d12ff6653af3). Track discussion [here](https://github.com/anapnoe/stable-diffusion-webui-ux/issues/141)
+
 ### v.2.5.3 (21/04/23)
 - `AUTOMATIC1111's stable-diffusion-webui` has been removed because Google Colab has prohibited the usage of any string named `stable-diffusion-webui` due to its massive usage of webui.
 - `Anapnoe UI` has been set as default forcibly, also added warning messages.
