@@ -2,6 +2,19 @@
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
 ## What's New?
+### v.2.6.1 (17/05/23)
+- Added `sd-civitai-browser` extension back, but this time using [SignalFlagZ/sd-civitai-browser](https://github.com/SignalFlagZ/sd-civitai-browser) version.
+- Changed `stable-diffusion-webui-latent-two-shot` extension with [ashen-sensored](ashen-sensored/stable-diffusion-webui-two-shot)'s fork.
+- Updated alternative tunnels recommendation: `ngrok` > `gradio` > `cloudflared` > `remotemoe` > `localhostrun` > `googleusercontent`. The ranking is based on the following reasons:
+  + Gradio: Faster and slightly more stable than the others, but may have queue problems.
+  - Cloudflared: Slow to start the application, loads extra networks and images.
+  - Remotemoe: Currently not usable.
+  - Localhostrun: Often gets disconnected, requiring a forced restart of cells to make it work.
+  - Googleusercontent: -
+- Bugfixes:
+  - Fixed `stable-diffusion-webui-composable-lora` not being installed in `repo_type` values: `["AUTOMATIC1111", "AUTOMATIC1111-dev"]`.
+  - Set `commit_hash` to empty and use latest commit because the bugs already fixed.
+
 
 ### v.2.6.0 (16/05/23)
 - Updated to the latest commit.
