@@ -2,6 +2,10 @@
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
 ## What's New?
+### v.2.6.2 (17/05/23)
+- Bugfixes:
+  - Attempting to fix generate button stuck problem by adding `latest_gradio` option to force update `gradio` to `3.31`
+
 ### v.2.6.1 (17/05/23)
 - Added `sd-civitai-browser` extension back, but this time using [SignalFlagZ/sd-civitai-browser](https://github.com/SignalFlagZ/sd-civitai-browser) version.
 - Changed `stable-diffusion-webui-latent-two-shot` extension with [ashen-sensored](ashen-sensored/stable-diffusion-webui-two-shot)'s fork.
