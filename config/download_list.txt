@@ -1,0 +1,18 @@
+// Instructions:
+// 1. Start with a key name preceded by a '#'. Key names should match those in the `custom_dirs` dictionary in your script.
+// 2. Key names are not case-sensitive.
+// 3. List your URLs for download under the key. Each URL should be on a new line.
+// 4. To download multiple files under the same key, just continue listing the URLs.
+// 5. To specify a filename for the download, format it as "URL | filename". Example: https://civitai.com/api/download/models/84623 | filename1.pth
+// 6. Lines starting with "//" are considered comments and will be ignored by the script.
+//
+// Available hashtag:
+// `#model`, `#vae`, `#embedding`, `#lora`, `#hypernetwork`, `#extensions`, `#upscaler`
+//
+// Example:
+// 
+// #model
+// https://civitai.com/api/download/models/82446
+// https://civitai.com/api/download/models/76907 | model.safetensors
+//
+// Start Here...
