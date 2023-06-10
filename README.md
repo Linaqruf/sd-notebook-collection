@@ -2,6 +2,73 @@
 All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI for Google Colab. <br>
  
 ## What's New?
+
+### v.3.0.0 (10/06/23)
+- Rewrote `cagliostro-colab-ui` codebase from scratch.
+  - Used in-house module [Colablib](https://github.com/Linaqruf/colablib) as the primary library for go-to functions, such as colored print, git function, download syntax, etc.
+  - Added numerous trivial but important pieces of information, such as the Python version, torch version, current commit hash.
+  - Improved console logs, using `print_line()` and `cprint()` from `Colablib`.
+- Merged `output_to_drive` with `mount_drive`.
+  - Now, the output path is automatically set to drive if Google Drive is mounted.
+- Built-in wildcard support.
+- Renamed `dpm_v2_patch` to `dpmpp_2m_v2_patch`.
+- Added new section: `Optimization config`.
+  - Introduced `mobile_optimizations` to keep Colab tab alive for mobile users.
+  - Removed `Keep Tab Alive for Mobile` due to similar functionality with the new optimization.
+- New extensions!
+  - [ilian6806/stable-diffusion-webui-state](https://github.com/ilian6806/stable-diffusion-webui-state) : Preserves Web UI parameters (inputs, sliders, checkboxes, etc.) after page reload.
+  - [pkuliyi2015/multidiffusion-upscaler-for-automatic1111](https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111) : Offers tiled Diffusion and VAE optimization.
+  - [Zuellni/Stable-Diffusion-WebUI-Image-Filters](https://github.com/Zuellni/Stable-Diffusion-WebUI-Image-Filters) : A simple image postprocessing extension using the Pillow library.
+  - [Linaqruf/Umi-AI-debloat](https://github.com/Linaqruf/Umi-AI-debloat) : Wildcard manager, a fork of [Tsukreya/Umi-AI-debloat](https://github.com/Tsukreya/Umi-AI-debloat) that has already fixed the lowercase problem.
+  - [AlUlkesh/sd_delete_button](https://github.com/AlUlkesh/sd_delete_button) : Adds a delete button for Automatic1111 txt2img and img2img.
+- New default models!
+  - Added [AnyLoRA_Anime_Mix](https://civitai.com/models/84586/) as a new AnyLoRA variant for 2D Anime generation, similar to NovelAI.
+  - Renamed the old `AnyLoRA` to [AnyLoRA_Default](https://civitai.com/models/23900/).
+  - Added [Ghost_Note_Delta](https://huggingface.co/corechan/GhostNotes#ghostnotedelta_m0528), [SDHK_V3](https://civitai.com/models/82813), for another Anime Model.
+  - Added [Majic_Mix_V5]() to replace `Chillout Mix`.
+  - Replaced `replicant_v2` with the latest and improved version, [Replicant_V3](https://huggingface.co/gsdf/Replicant-V3.0).
+  - Reintroduced `Illuminati Diffusion V1.1`.
+  - Removed Waifu Diffusion 1.5 models.
+- New default VAEs!
+  - Added [Blessed VAE](https://huggingface.co/NoCrypt/blessed_vae).
+  - All default VAEs are now in `.safetensors`! Thanks to NoCrypt.
+- ControlNet
+  - Added new Annotator, up to `Lama cleaner`.
+  - Included a list of new SDv2.x ControlNet Models from [thibaud/controlnet-sd21](https://huggingface.co/thibaud/controlnet-sd21).
+  - Added `Custom ControlNet Model` section to download custom controlnet models such as [Illumination](https://huggingface.co/ioclab/control_v1u_sd15_illumination_webui), [Brightness](https://huggingface.co/ioclab/control_v1p_sd15_brightness), the upcoming [QR Code](https://www.reddit.com/r/StableDiffusion/comments/141hg9x/controlnet_for_qr_code/) model, and any other unofficial ControlNet Model.
+  - Please ensure your custom ControlNet model has `sd15`/`sd21` in the filename.
+  - Reintroduced `t2i_adapter_model`.
+- Custom Download Corner
+  - Added instructions for using the `fuse:` prefix, handling multiple URLs, and loading models from Google Drive.
+  - The `prune:`, `fp16:`, or `fp32:` prefixes currently are not available.
+  - Introduced a new section: `Download From Textfile`.
+    - This uses a similar approach to the [etherealxx/batchlinks-webui](https://github.com/etherealxx/batchlinks-webui) extensions.
+    - Provide a custom download URL for a `.txt` file instead of using the URL field. Edit the file: `/content/download_list.txt`.
+    - Available hashtags: `#model`, `#vae`, `#embedding`, `#lora`, `#hypernetwork`, `#extensions`, `#upscaler`. Aliases are not currently supported.
+    - Alternatively, you can input your `.txt` file into `custom_download_list_url`. This works for `pastebin`.
+
+    Example: 
+    ```python
+    #model
+    url1
+    url2
+
+    #lora
+    url1 | filename1
+
+    #embedding
+    fuse:path
+    ```
+- Launch
+  - Added `--opt-sdp-mem-attention` option for `accelerator`.
+  - Included error handling if the user forgets to download the model and vae. It will automatically download these two files before launch:
+    - Model: [AnyLoRA_Anime_Mix](https://civitai.com/models/84586/)
+    - VAE: [Animevae](https://huggingface.co/NoCrypt/resources/blob/main/VAE/any.vae.safetensors)
+- Refactored `Download Generated Images` and other `Extras` cells by wrapping code inside functions.
+
+- Bugfixes:
+  - Fixed `dpmpp_2m_v2_patch`, now it's working properly.
+
 ### v.2.6.2 (17/05/23)
 - Bugfixes:
   - Attempting to fix generate button stuck problem by adding `latest_gradio` option to force update `gradio` to `3.31`
