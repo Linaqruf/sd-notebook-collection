@@ -64,10 +64,13 @@ All-in-One, Customizable and Flexible AUTOMATIC1111's Stable Diffusion Web UI fo
   - Included error handling if the user forgets to download the model and vae. It will automatically download these two files before launch:
     - Model: [AnyLoRA_Anime_Mix](https://civitai.com/models/84586/)
     - VAE: [Animevae](https://huggingface.co/NoCrypt/resources/blob/main/VAE/any.vae.safetensors)
+  - Added `Token Merging Ratio` or `ToME SD` and `Negative Guidance Scale` to quicksettings
 - Refactored `Download Generated Images` and other `Extras` cells by wrapping code inside functions.
 
 - Bugfixes:
   - Fixed `dpmpp_2m_v2_patch`, now it's working properly.
+  - Temporary fixed LoRA not applied when using Hires Fix
+  - Fixed file extensions undefined in `Custom Download Corner`
 
 ### v.2.6.2 (17/05/23)
 - Bugfixes:
